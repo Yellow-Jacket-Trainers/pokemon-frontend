@@ -64,36 +64,31 @@
 
 ### User Story 4
 
-#### As a user, I want to know that 
+#### As a user, I want to know that my Pokemon team is unique to me and cannot be altered by other users.
 
 ##### Feature Tasks:
 
-Admin can choose which users schedules to view/edit
-Show the options for all employees schedules
-Select ability to have recurring schedules
-Save schedule changes
+- Add auth0 authentication on login as a requirement to access the site features.
+- Utilize unique identifiers for Pokemon selected on a user favorite team and retrieve those Pokemon upon successful login.
+- STRETCH: Use auth0 to validate multiple different Pokemon teams per user.
 
 ##### Acceptance Tests:
 
-Ensure that the employee the admin picked links to the correct schedule
-Ensure the scheduling does not interfere with requested time off
-Ensure that the schedules successfully save into database
-Provide error message and abort transaction if system becomes unavailable
+- When logging into the main page with auth0 the user's previous team comes up.
+- If the user does not log in with auth0, they are denied access to the main page.
+- If the user is logging in for the first time, there will be no saved teams from other users displayed.
 
 ### User Story 5
 
-#### As an administrative user, I want the ability to modify all employee’s schedules.
+#### As a visitor to the site, I want to see information about the team who made the project.
 
 ##### Feature Tasks:
 
-Admin can choose which users schedules to view/edit
-Show the options for all employees schedules
-Select ability to have recurring schedules
-Save schedule changes
+- Build an About Me page with biographical info about the developers.
+- Include pictures and a brief bio of each contributor to the project.
+- STRETCH: Use Pokemon styled images for each contributor.
 
 ##### Acceptance Tests:
 
-Ensure that the employee the admin picked links to the correct schedule
-Ensure the scheduling does not interfere with requested time off
-Ensure that the schedules successfully save into database
-Provide error message and abort transaction if system becomes unavailable
+- The about-me page is accessible upon login and is of the same style as the rest of the site.
+- Professional images and bios are included for each contributor.
