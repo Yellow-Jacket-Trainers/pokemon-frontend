@@ -31,10 +31,13 @@
 - Pokemon cards will render in the carousel with preview images from the PokemonTCGapi.
 - When a card is selected by the user, a full size image will display.
 - The image of the Pokemon will have basic relevant stats: attack, hp, type and weaknesses.
+- STRETCH: the cards are ordered in the carousel in terms of rarity.
 
 ##### Acceptance Tests:
 
-- 
+- The correct Pokemon cards render when the user runs a search for Pokemon.
+- The correct relevant stats display adjacent to the card image.
+- STRETCH: information card rarity is rendered.
 
 ### User Story 3
 
