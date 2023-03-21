@@ -8,6 +8,8 @@ import {
   Route
 } from "react-router-dom";
 
+import { Container, Row, Col, Image } from 'react-bootstrap';
+
 import Pokemon from './Components/PokemonForm';
 // import Home from './Home';
 import Header from './Header';
