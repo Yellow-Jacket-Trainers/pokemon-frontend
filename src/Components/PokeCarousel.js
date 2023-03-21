@@ -8,7 +8,6 @@ class PokeCarousel extends React.Component{
       pokemonItems = this.props.pokeData.map(pokeData => (
         <Carousel.Item key={pokeData._id}>
           <img
-            className="d-block w-100"
             src={pokeData.image}
             alt={pokeData.name}
           />

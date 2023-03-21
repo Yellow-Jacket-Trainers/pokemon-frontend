@@ -154,14 +154,23 @@ class App extends React.Component {
               </Route> */}
 
             </Routes>
-          
-            
-            <Footer />
-          </Routes>
-            <Sidebar
+             
+            {/* <PokemonStats
+                pokeData={this.state.pokeData}
+            /> */}
+
+            <PokeCarousel
+                pokeData={this.state.pokeData}
+                />
+
+             <Sidebar
               favorites={this.state.favorites}
               handleDelete={this.handleDelete}
               />
+            
+            <Footer />
+
+
           <Footer />
         </Router>
 
