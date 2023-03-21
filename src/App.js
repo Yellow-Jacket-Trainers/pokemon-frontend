@@ -7,7 +7,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-
+import { Container, Row, Col } from 'react-bootstrap';
+import Sidebar from './Components/Sidebar';
 import Pokemon from './Components/PokemonForm';
 import Header from './Header';
 import Footer from './Footer'
@@ -20,7 +21,8 @@ class App extends React.Component {
       pokeData: {},
       error: false,
       errorMessage: '',
-      isLoggedIn: false
+      isLoggedIn: false,
+      favorites: []
     }
   }
 
@@ -116,7 +118,15 @@ class App extends React.Component {
               element={<Home />}>
               </Route> */}
 
+            </Routes>
+          
+            
+            <Footer />
           </Routes>
+            <Sidebar
+              favorites={this.state.favorites}
+              handleDelete={this.handleDelete}
+              />
           <Footer />
         </Router>
         <Carousel>{pokemonItems}</Carousel>
