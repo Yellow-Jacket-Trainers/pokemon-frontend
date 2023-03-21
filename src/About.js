@@ -24,19 +24,19 @@ class About extends React.Component {
         image: 'https://example.com/john.jpg',
       },
       {
-        name: ' ',
+        name: 'Arturo Valdez ',
         role: ' ',
         bio: ' ',
         image: 'https://example.com/jane.jpg',
       },
       {
-        name: ' ',
+        name: 'Kyle Freemantle ',
         role: ' ',
         bio: ' ',
         image: 'https://example.com/jane.jpg',
       },
       {
-        name: ' ',
+        name: 'Miranda Lu ',
         role: ' ',
         bio: ' ',
         image: 'https://example.com/jane.jpg',
