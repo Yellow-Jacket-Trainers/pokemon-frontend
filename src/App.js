@@ -8,10 +8,9 @@ import {
   Route,
 } from "react-router-dom";
 
-import { Carousel } from 'react-bootstrap';
-import { Container, Row, Col } from 'react-bootstrap';
+// import { Carousel } from 'react-bootstrap';
+// import { Container, Row, Col } from 'react-bootstrap';
 import Sidebar from './Components/Sidebar';
-import Pokemon from './Components/PokemonForm';
 
 import Header from './Header';
 import Footer from './Footer'
@@ -24,6 +23,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       pokeName: '',
+      pokeType:'',
       pokeData: [],
       error: false,
       errorMessage: '',
@@ -126,7 +126,7 @@ class App extends React.Component {
               element={
               <PokemonForm
               getPokeDataFromAPI={this.getPokeDataFromAPI}
-                handlePokeInput={this.handlePokeInput}
+              handlePokeInput={this.handlePokeInput}
                 />}>
             </Route>
 
@@ -154,23 +154,21 @@ class App extends React.Component {
               </Route> */}
 
             </Routes>
-             
-            {/* <PokemonStats
-                pokeData={this.state.pokeData}
-            /> */}
 
+          {this.state.pokeData 
+          &&
+            <>
+            <PokemonStats
+            pokeName={this.state.pokeName}
+              pokeData={this.state.pokeData} />
             <PokeCarousel
-                pokeData={this.state.pokeData}
-                />
-
-             <Sidebar
-              favorites={this.state.favorites}
-              handleDelete={this.handleDelete}
-              />
+                pokeData={this.state.pokeData} />
+            <Sidebar
+            favorites={this.state.favorites}
+            handleDelete={this.handleDelete} />
+                </>
+          }
             
-            <Footer />
-
-
           <Footer />
         </Router>
 
