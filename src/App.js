@@ -8,43 +8,75 @@ import {
   Route
 } from "react-router-dom";
 
-import Pokemon from './Components/PokemonForm';
 // import Home from './Home';
 import Header from './Header';
 import Footer from './Footer'
 // import About from './About';
+import PokemonForm from './Components/PokemonForm';
+import PokemonStats from './Components/PokemonStats';
 
 class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       pokeName: '',
-      pokeData:{},
+      pokeData:[],
       error:false,
       errorMessage:'',
       isLoggedIn: false
     }
   }
 
-  getPokeData = async (e) => {
-    e.preventDefault();
-    let pokeData = await axios.get(`${process.env.REACT_APP_SERVER}/pokemon?name=${this.state.pokeName}`)
-    console.log(pokeData.data)
-    this.setState({
-      pokeData:pokeData.data,
-    }, console.log(this.state.pokeData))
-    //console.log(this.state.movieData)
-  }
- 
+
   handlePokeInput = (event) => {
     this.setState({
       pokeName: event.target.value.toLowerCase(),
     }, console.log(this.state.pokeName));
   };
 
-  
 
+  //get Pokemon data from API
+  getPokeDataFromAPI = async (e) => {
+    e.preventDefault();
+    let pokeData = await axios.get(`${process.env.REACT_APP_SERVER}/pokemon?name=${this.state.pokeName}`)
+    console.log(pokeData.data)
+    this.setState({
+      pokeData:pokeData.data,
+    }, console.log(this.state.pokeData))
+  }
 
+  //send Pokemon data to database when selected
+  postPoke = async (newPokemon) => {
+    try {
+      //get token
+      // const res = await this.props.auth0.getIdTokenClaims();
+      // console.log(res);
+      // const jwt = res.__raw;
+      // console.log(jwt)
+      // localStorage.setItem("jwt", jwt);
+      const config = {
+        method: 'post',
+        baseURL: process.env.REACT_APP_SERVER,
+        url: '/pokemondb',
+        // headers: {
+        //   'Authorization': `Bearer ${jwt}`
+        // },
+        data: newPokemon
+        
+      }
+      // let url = `${SERVER}/pokemon`
+      // const jwt = localStorage.getItem("jwt");
+      let selectedPoke = await axios(config);
+      console.log(selectedPoke.data);
+      this.setState({
+        pokeData: [...this.state.pokeData, selectedPoke.data]
+      }, 
+      console.log('selected poke sent to DB', this.state.pokeData))
+    }
+    catch (error) {
+      console.log('ERR', error.response.data)
+    }
+  }
 
   render(){
     return (
@@ -53,11 +85,22 @@ class App extends React.Component{
           <Header />
           <Routes>
 
-              <Route
+            <Route
               exact path="/"
-              element={<Pokemon 
-                getPokeData={this.getPokeData}
-                handlePokeInput={this.handlePokeInput}/>}>
+              element={
+              <PokemonForm
+                pokeName={this.state.pokeName}
+                handlePokeInput={this.handlePokeInput}
+                getPokeDataFromAPI={this.getPokeDataFromAPI}
+                />}>
+            </Route>
+
+            <Route
+              exact path="/"
+              element={
+              <PokemonStats
+                getPokeDataFromAPI={this.getPokeDataFromAPI}
+                />}>
             </Route>
 
             {/* <Route
@@ -78,10 +121,8 @@ class App extends React.Component{
 
 
     )
-
-
   }
-
 }
 
+// export default withAuth0(App);
 export default App;
