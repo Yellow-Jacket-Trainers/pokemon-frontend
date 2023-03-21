@@ -111,6 +111,12 @@ class App extends React.Component {
       }
     };
 
+    addToFavorites = (pokemon) => {
+      this.setState((prevState) => ({
+        favorites: [...prevState.favorites, pokemon],
+      }));
+    };
+
   
 
 
@@ -134,6 +140,7 @@ class App extends React.Component {
               exact path="/"
               element={<PokemonStats
                 pokeData={this.state.pokeData}
+                addToFavorites={this.addToFavorites}
                 />}>
             </Route>
 
@@ -165,7 +172,7 @@ class App extends React.Component {
 
              <Sidebar
               favorites={this.state.favorites}
-              handleDelete={this.handleDelete}
+              handleDelete={this.deletePokeData}
               />
             
             <Footer />
