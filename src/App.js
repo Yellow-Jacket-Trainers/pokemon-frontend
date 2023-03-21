@@ -12,14 +12,14 @@ import Pokemon from './Components/PokemonForm';
 import Header from './Header';
 import Footer from './Footer'
 
-class App extends React.Component{
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pokeName: '',
-      pokeData:{},
-      error:false,
-      errorMessage:'',
+      pokeData: {},
+      error: false,
+      errorMessage: '',
       isLoggedIn: false
     }
   }
@@ -27,6 +27,7 @@ class App extends React.Component{
   getPokeData = async (e) => {
     e.preventDefault();
     try {
+
       let pokeData = await axios.get(`${process.env.REACT_APP_SERVER}/pokemon?name=${this.state.pokeName}`);
       console.log(pokeData.data);
       this.setState({
@@ -51,16 +52,28 @@ class App extends React.Component{
   }
   
 
-  DeletePokemon = async (e) => {
-    e.preventDefault();
-    let url = `${process.env.REACT_APP_SERVER}/pokemon`
-  }
- 
-  handlePokeInput = (event) => {
-    this.setState({
-      pokeName: event.target.value.toLowerCase(),
-    }, console.log(this.state.pokeName));
-  };
+
+    DeletePokeData = async (id) => {
+      try {
+        await axios.delete(`${process.env.REACT_APP_SERVER}/pokemon/${id}`);
+        this.setState(prevState => ({
+          pokeData: prevState.pokeData.filter(pokemon => pokemon.id !== id)
+        }))
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    handlePokeInput = (event) => {
+      try {
+        this.setState({
+          pokeName: event.target.value.toLowerCase(),
+        }, () => console.log(this.state.pokeName));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
 
   render(){
     let pokemonItems = [];
@@ -94,6 +107,7 @@ class App extends React.Component{
                 handlePokeInput={this.handlePokeInput}/>}>
             </Route>
             {/* <Route
+
               path="/about"
               element={<About />}>
               </Route> */}
@@ -101,6 +115,7 @@ class App extends React.Component{
               path="/home"
               element={<Home />}>
               </Route> */}
+
           </Routes>
           <Footer />
         </Router>
