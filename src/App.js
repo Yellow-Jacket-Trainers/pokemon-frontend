@@ -7,9 +7,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-
+import { Container, Row, Col } from 'react-bootstrap';
 import Sidebar from './Components/Sidebar';
-
 import Pokemon from './Components/PokemonForm';
 // import Home from './Home';
 import Header from './Header';
@@ -24,7 +23,8 @@ class App extends React.Component{
       pokeData:{},
       error:false,
       errorMessage:'',
-      isLoggedIn: false
+      isLoggedIn: false,
+      favorites: [],
     }
   }
 
