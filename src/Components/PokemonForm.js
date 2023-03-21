@@ -7,10 +7,15 @@ class PokemonForm extends React.Component{
   render() {
     return(
       <>      
-        <Form className="city-form" onSubmit={this.props.getPokeDataFromAPI}>
-        <Form.Group  controlId="cityInput">
+        <Form className="poke-form" 
+        onSubmit={this.props.getPokeDataFromAPI}>
+
+        <Form.Group  controlId="pokeInput">
           <Form.Label>Which Pokemon interests you?</Form.Label>
-          <Form.Control type="text" placeholder="e.g. Gardevoir" onChange={this.props.handlePokeInput}/>
+          <Form.Control 
+          type="text" 
+          placeholder="e.g. Gardevoir" 
+          onChange={this.props.handlePokeInput}/>
         </Form.Group>
         <Button type="submit">Explore!</Button>
         </Form>

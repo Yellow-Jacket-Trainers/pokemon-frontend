@@ -17,6 +17,7 @@ import Header from './Header';
 import Footer from './Footer'
 import PokemonForm from './Components/PokemonForm';
 import PokemonStats from './Components/PokemonStats';
+import PokeCarousel from './Components/PokeCarousel';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,24 +32,54 @@ class App extends React.Component {
     }
   }
 
-  getPokeData = async (e) => {
+  //get Pokemon data from API
+  getPokeDataFromAPI = async (e) => {
     e.preventDefault();
-    try {
-
-      let pokeData = await axios.get(`${process.env.REACT_APP_SERVER}/pokemon?name=${this.state.pokeName}`);
-      console.log(pokeData.data);
-      this.setState({
-        pokeData: pokeData.data,
-      }, () => console.log(this.state.pokeData));
-    } catch (error) {
-      console.error(error);
-    }
+    let url = `${process.env.REACT_APP_SERVER}/pokemon?name=${this.state.pokeName}`;
+    console.log(url);
+    let pokeData = await axios.get(url);
+    console.log(pokeData.data)
+    this.setState({
+      pokeData:pokeData.data,
+    }, console.log(this.state.pokeData))
   }
+
+    //send Pokemon data to database when selected
+    postPoke = async (newPokemon) => {
+      try {
+        //get token
+        // const res = await this.props.auth0.getIdTokenClaims();
+        // console.log(res);
+        // const jwt = res.__raw;
+        // console.log(jwt)
+        // localStorage.setItem("jwt", jwt);
+        const config = {
+          method: 'post',
+          baseURL: process.env.REACT_APP_SERVER,
+          url: '/pokemondb',
+          // headers: {
+          //   'Authorization': `Bearer ${jwt}`
+          // },
+          data: newPokemon
+  
+        }
+        // let url = `${SERVER}/pokemon`
+        // const jwt = localStorage.getItem("jwt");
+        let selectedPoke = await axios(config);
+        console.log(selectedPoke.data);
+        this.setState({
+          pokeData: [...this.state.pokeData, selectedPoke.data]
+        }, 
+        console.log('selected poke sent to DB', this.state.pokeData))
+      }
+      catch (error) {
+        console.log('ERR', error.response.data)
+      }
+    }
   
   updatePokemon = async (e) => {
-    e.preventDefault();
     try {
-      let updatedPokemon = await axios.put(`${process.env.REACT_APP_SERVER}/pokemon/${this.state.pokeData._id}`, this.state.pokeData);
+      let updatedPokemon = await axios.put(`${process.env.REACT_APP_SERVER}/pokemondb/${this.state.pokeData._id}`, this.state.pokeData);
       console.log(updatedPokemon.data);
       this.setState({
         pokeData: updatedPokemon.data,
@@ -58,11 +89,9 @@ class App extends React.Component {
     }
   }
   
-
-
-    DeletePokeData = async (id) => {
+    deletePokeData = async (id) => {
       try {
-        await axios.delete(`${process.env.REACT_APP_SERVER}/pokemon/${id}`);
+        await axios.delete(`${process.env.REACT_APP_SERVER}/pokemondb/${id}`);
         this.setState(prevState => ({
           pokeData: prevState.pokeData.filter(pokemon => pokemon.id !== id)
         }))
@@ -72,6 +101,7 @@ class App extends React.Component {
     }
 
     handlePokeInput = (event) => {
+      event.preventDefault();
       try {
         this.setState({
           pokeName: event.target.value.toLowerCase(),
@@ -86,46 +116,35 @@ class App extends React.Component {
 
 
   render(){
-    let pokemonItems = [];
-    if (this.state.pokeData.length) {
-      pokemonItems = this.state.pokeData.map(pokeData => (
-        <Carousel.Item key={pokeData._id}>
-          <img
-            className="d-block w-100"
-            // src="book-bg.jpg"
-            alt="Pokemon"
-          />
-    
-          <Carousel.Caption>
-            <h3>{pokeData.title}</h3>
-            <p>{pokeData.description}</p>
-            <p>{pokeData.status}</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      ));
-    }
-
     return (    
       <>
         <Router>
           <Header />
           <Routes>
-
               <Route
               exact path="/"
-              element={<PokemonForm
-                getPokeData={this.getPokeData}
-                handlePokeInput={this.handlePokeInput}/>}>
+              element={
+              <PokemonForm
+              getPokeDataFromAPI={this.getPokeDataFromAPI}
+                handlePokeInput={this.handlePokeInput}
+                />}>
             </Route>
 
-            {/* <Route
+            <Route
               exact path="/"
               element={<PokemonStats
                 pokeData={this.state.pokeData}
                 />}>
-            </Route> */}
-            {/* <Route
+            </Route>
 
+             <Route
+              exact path="/"
+              element={<PokeCarousel
+                pokeData={this.state.pokeData}
+                />}>
+            </Route>
+
+            {/* <Route
               path="/about"
               element={<About />}>
               </Route> */}
@@ -146,8 +165,8 @@ class App extends React.Component {
           <Footer />
         </Router>
 
-        
-        <Carousel>{pokemonItems}</Carousel>
+
+
       </>
     )
   }
