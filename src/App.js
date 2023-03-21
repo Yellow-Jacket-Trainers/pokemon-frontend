@@ -35,6 +35,11 @@ class App extends React.Component{
     }, console.log(this.state.pokeData))
     //console.log(this.state.movieData)
   }
+
+  DeletePokemon = async (e) => {
+    e.preventDefault();
+    let url = `${process.env.REACT_APP_SERVER}/pokemon`
+  }
  
   handlePokeInput = (event) => {
     this.setState({
