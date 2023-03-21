@@ -4,7 +4,7 @@ import {  ListGroup, Image  } from 'react-bootstrap';
 class PokemonStats extends React.Component{
 
   render() {
-
+    console.log(this.props.pokeData)
 
     return(
       <>
