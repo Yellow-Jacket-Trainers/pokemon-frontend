@@ -87,21 +87,17 @@ class App extends React.Component{
 
             <Route
               exact path="/"
-              element={
-              <PokemonForm
-                pokeName={this.state.pokeName}
-                handlePokeInput={this.handlePokeInput}
-                getPokeDataFromAPI={this.getPokeDataFromAPI}
-                />}>
+              element={<PokemonForm
+                getPokeData={this.getPokeData}
+                handlePokeInput={this.handlePokeInput}/>}>
             </Route>
 
-            <Route
+            {/* <Route
               exact path="/"
-              element={
-              <PokemonStats
-                getPokeDataFromAPI={this.getPokeDataFromAPI}
+              element={<PokemonStats
+                pokeData={this.state.pokeData}
                 />}>
-            </Route>
+            </Route> */}
 
             {/* <Route
               path="/about"
