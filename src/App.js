@@ -8,7 +8,7 @@ import {
   Route
 } from "react-router-dom";
 
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import Sidebar from './Components/Sidebar';
 
 import Pokemon from './Components/PokemonForm';
 // import Home from './Home';
@@ -78,6 +78,10 @@ class App extends React.Component{
               </Route> */}
 
             </Routes>
+            <Sidebar
+              favorites={this.state.favorites}
+              handleDelete={this.handleDelete}
+              />
             
             <Footer />
         </Router>
