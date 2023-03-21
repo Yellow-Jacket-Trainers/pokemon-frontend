@@ -5,20 +5,25 @@ import axios from 'axios';
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
 } from "react-router-dom";
+
+import { Carousel } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 import Sidebar from './Components/Sidebar';
 import Pokemon from './Components/PokemonForm';
+
 import Header from './Header';
 import Footer from './Footer'
+import PokemonForm from './Components/PokemonForm';
+import PokemonStats from './Components/PokemonStats';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pokeName: '',
-      pokeData: {},
+      pokeData: [],
       error: false,
       errorMessage: '',
       isLoggedIn: false,
@@ -76,6 +81,9 @@ class App extends React.Component {
       }
     };
 
+  
+
+
 
   render(){
     let pokemonItems = [];
@@ -102,12 +110,20 @@ class App extends React.Component {
         <Router>
           <Header />
           <Routes>
-            <Route
+
+              <Route
               exact path="/"
-              element={<Pokemon 
+              element={<PokemonForm
                 getPokeData={this.getPokeData}
                 handlePokeInput={this.handlePokeInput}/>}>
             </Route>
+
+            {/* <Route
+              exact path="/"
+              element={<PokemonStats
+                pokeData={this.state.pokeData}
+                />}>
+            </Route> */}
             {/* <Route
 
               path="/about"
@@ -129,10 +145,13 @@ class App extends React.Component {
               />
           <Footer />
         </Router>
+
+        
         <Carousel>{pokemonItems}</Carousel>
       </>
     )
   }
 }
 
+// export default withAuth0(App);
 export default App;
