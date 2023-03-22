@@ -1,28 +1,63 @@
 import React from 'react';
-import { ListGroup, Image, Button } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 
-function Sidebar(props) {
+class Sidebar extends React.Component {
 
-  const { favorites, handleDelete } = props;
-  
-  return (
-    <div>
+  componentDidMount() {
+    this.props.getPokeDataFromDB()
+  }
+
+  render() {
+    console.log(this.props.favorites)
+    console.log(this.props.team)
+    let team = [];
+    if (this.props.favorites) {
+      team = this.props.favorites.map((member) => (
+      <Team 
+      key={member._id}
+      member={member}
+      deletePokemon={this.props.deletePokemon}
+      updatePokemon={this.props.updatePokemon}
+      />
+    
+
+    ))
+          }
+
+      return (
+    <>
       <h3>Favorite Mons</h3>
       <ListGroup>
-        {favorites.map((favorite, idx) => (
-          <ListGroup.Item key={idx}>
-            <Image src={favorite.imageUrl} thumbnail />
-            <Button 
-            onClick={() => handleDelete(idx)}
-            variant="danger">
-              Delete
-              </Button>
-          </ListGroup.Item>
-        ))}
+        {team}
       </ListGroup>
-    </div>
+        
+        
+        </>
   );
+  }
+}
 
+class Team extends React.Component {
+  render() {
+    return(
+      <ListGroup.Item>
+      {this.props.member.name}
+
+    {/* <Button
+      variant='warning'
+      onClick={this.props.updatePokemon} >
+      Make MVP 
+    </Button>
+     */}
+    <Button
+      variant='danger'
+      onClick={() => this.props.deletePokemon(this.props.member._id)}>
+        Delete Pokemon
+      </Button>
+  </ListGroup.Item>
+    )
+
+  }
 
 }
 
