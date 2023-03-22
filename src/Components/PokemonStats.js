@@ -25,7 +25,7 @@ class PokemonStats extends React.Component{
         >
         Favorite this Pokemon 🌟 
         </ListGroup.Item>
-        <ListGroup.Item>Pokemon Name: {this.props.pokeData[0].name}</ListGroup.Item>
+        <ListGroup.Item> Pokemon Name: {this.props.pokeData[0].name}</ListGroup.Item>
         <ListGroup.Item>Pokemon Type: {this.props.pokeData[0].types}</ListGroup.Item>
         <ListGroup.Item>Pokemon Weakness: {this.props.pokeData[0].weaknesses[0].type}</ListGroup.Item>
         </ListGroup>   
