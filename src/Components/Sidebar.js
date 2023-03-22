@@ -5,9 +5,9 @@ class Sidebar extends React.Component {
 
 
 
-  componentDidMount() {
-    this.props.getPokeDataFromDB()
-  }
+  // componentDidMount() {
+  //   this.props.getPokeDataFromDB()
+  // }
 
   render() {
     console.log(this.props.favorites)
@@ -17,7 +17,7 @@ class Sidebar extends React.Component {
     if (this.props.team) {
       team = this.props.team.map((member) => (
       <Team 
-      key={member._id}
+      _id={member._id}
       member={member}
       deletePokemon={this.props.deletePokemon}
       updatePokemon={this.props.updatePokemon}
@@ -58,7 +58,7 @@ class Team extends React.Component {
 
   render() {
     return(
-      <ListGroup.Item>
+      <ListGroup.Item key={this.props._id}>
       {this.props.member.name}
 
     <Button

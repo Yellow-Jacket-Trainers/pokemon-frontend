@@ -99,11 +99,11 @@ class App extends React.Component {
         // const jwt = localStorage.getItem("jwt");
         let selectedPoke = await axios(config);
         console.log(selectedPoke.data);
-        //  this.setState({
-        //    team: [...this.state.favorites, newPokemon]
-        //  },
+          this.setState({
+            team: [...this.state.team, selectedPoke.data]
+          },
         // console.log(selectedPoke)
-        //  )
+          )
       }
       catch (error) {
         console.log('ERR', error.response)
@@ -140,6 +140,7 @@ class App extends React.Component {
           ? updatedPokemonFromDb.data
           : member;
       });
+      console.log(updatedTeam);
       this.setState({
         team: updatedTeam,
       });
@@ -194,11 +195,12 @@ class App extends React.Component {
         types: this.state.pokeData[0].types,
         weaknesses: this.state.pokeData[0].weaknesses,
       }
-      this.setState({
-        team: [...this.state.team, newPokeMember]
-      },
-      () => this.postPokemon(newPokeMember)
-      );
+      this.postPokemon(newPokeMember);
+      // this.setState({
+      //   team: [...this.state.team, newPokeMember]
+      // },
+      // () => console.log(`${this.state.team}`)
+      // );
     }
 
   render(){
