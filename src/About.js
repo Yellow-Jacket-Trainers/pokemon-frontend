@@ -7,9 +7,11 @@ class TeamMember extends React.Component {
     const alignment = index % 2 === 0 ? 'left' : 'right';
     return (
       <div className={`team-member ${alignment}`}>
-        <img className="member-image"
+        <img
+          className={`member-image ${alignment === 'right' ? 'member-image-right' : ''}`}
           src={process.env.PUBLIC_URL + image}
-          alt={name} />
+          alt={name}
+        />
         <div className="member-info">
           <h3>{name}</h3>
           <p><strong>{role}</strong></p>
@@ -20,12 +22,15 @@ class TeamMember extends React.Component {
   }
 }
 
+
+
+
 class About extends React.Component {
   render() {
     const teamMembers = [
       {
         name: 'Miranda Lu',
-        role: 'Developer/Java Department',
+        role: 'Developer/JavaScript Department',
         bio: 'I’m a software developer with experience in finance and scientific analysis. From my past experiences, I discovered how powerful computers can be, as they can automate many monotonous processes and improve workflow efficiency. As a veteran, I enjoy team work and networking; and as a prior scientist, I look forward to starting a career in finance technology, that allows me use coding to enhance my quantitative reasoning skills.',
         image: '/aboutUs/miranda.png',
       },
@@ -36,14 +41,14 @@ class About extends React.Component {
         image: '/aboutUs/mo.png',
       },
       {
-        name: 'Arturo Valdez',
+        name: 'Arturo Valadez',
         role: 'Developer/Arts Department',
         bio: "Software developer specializing in front-end development utilizing Javascript, Html, CSS. Navy veteran with a background in client services, engineering, project planning and estimating. Experienced in various fields providing a positive and fresh perspective to the tech industry. Looking to make this world a better place one block of code at a time.",
         image: '/aboutUs/arturo.png',
       },
       {
         name: 'Kyle Freemantle',
-        role: 'Developer/Java Department',
+        role: 'Developer/JavaScript Department',
         bio: "I'm Kyle, and I am a software developer currently studying at Code Fellows. Prior to this I did my best work in healthcare tech, spending 7 years in increasingly complex analyst and IT support roles.  I would like to use my powers for good and go back into healthcare tech at a small or medium sized company. It is very important to me that the work I do could be helping someone else who is struggling too.",
         image: '/aboutUs/kyle.png',
       },
