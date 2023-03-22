@@ -2,7 +2,7 @@
 
 .about-container {
   font-family: 'Press Start 2P', cursive;
-  background-image: url('https://i.imgur.com/9RjKRX7.jpg');
+  background-image: url(/public/aboutUs/battleBackground.png);
   background-size: cover;
   background-position: center;
   padding: 2rem;
