@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.about-container {
+  font-family: 'Press Start 2P', cursive;
+  background-image: url('https://i.imgur.com/9RjKRX7.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  color: #ffffff;
+}
+
+h2 {
+  text-align: center;
+  color: #ffcb05;
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 2px solid #ffcb05;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.team-member.left {
+  flex-direction: row;
+}
+
+.team-member.right {
+  flex-direction: row-reverse;
+}
+
+.member-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 1rem;
+  border: 2px solid #ffcb05;
+}
+
+.member-info h3 {
+  color: #3d7dca;
+}
+
+.member-info p {
+  color: #ffffff;
+}
+
+.member-info strong {
+  color: #7cbb00;
+}
