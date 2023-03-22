@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { withAuth0 } from '@auth0/auth0-react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -47,26 +48,25 @@ class App extends React.Component {
 
   //get pokemon from database
   getPokeDataFromDB = async () => {
-    // if (this.props.auth0.isAuthenticated) {
+   if (this.props.auth0.isAuthenticated) {
     console.log('get data from db')
       try {
         //get token
-        // const res = await this.props.auth0.getIdTokenClaims();
-        // console.log(res);
-        // const jwt = res.__raw;
-        // console.log(jwt)
-        // localStorage.setItem("jwt", jwt);
+        const res = await this.props.auth0.getIdTokenClaims();
+        console.log(res);
+        const jwt = res.__raw;
+        console.log(jwt)
+        localStorage.setItem("jwt", jwt);
         const config = {
           method: 'get',
           baseURL: process.env.REACT_APP_SERVER,
           url: '/pokemondb',
-          // headers: {
-          //   'Authorization': `Bearer ${jwt}`
-          // }
+          headers: {
+            'Authorization': `Bearer ${jwt}`
+          }
         }
         let results = await axios(config)
-
-        // let results = await axios.get(`${SERVER}/pokemondb`);
+        
         console.log(results)
         this.setState({
           team: results.data
@@ -76,26 +76,26 @@ class App extends React.Component {
         console.log('There was an error!:', error.response)
       }
     };
+  }
 
     //send Pokemon data to database when selected
     postPokemon = async (newPokemon) => {
       try {
-        //get token
-        // const res = await this.props.auth0.getIdTokenClaims();
-        // console.log(res);
-        // const jwt = res.__raw;
-        // console.log(jwt)
-        // localStorage.setItem("jwt", jwt);
+        // get token
+        const res = await this.props.auth0.getIdTokenClaims();
+        console.log(res);
+        const jwt = res.__raw;
+        console.log(jwt)
+        localStorage.setItem("jwt", jwt);
         const config = {
           method: 'post',
           baseURL: process.env.REACT_APP_SERVER,
           url: '/pokemondb',
-          // headers: {
-          //   'Authorization': `Bearer ${jwt}`
-          // },
+          headers: {
+            'Authorization': `Bearer ${jwt}`
+          },
           data: newPokemon
         }
-        // let url = `${SERVER}/pokemon`
         // const jwt = localStorage.getItem("jwt");
         let selectedPoke = await axios(config);
         console.log(selectedPoke.data);
@@ -112,26 +112,23 @@ class App extends React.Component {
   
   updatePokemon = async (pokemonToUpdate) => {
     try {
-
-      // const res = await this.props.auth0.getIdTokenClaims();
-      // console.log(res);
-      // const jwt = res.__raw;
-      // console.log(jwt)
-      // localStorage.setItem("jwt", jwt);
+      const res = await this.props.auth0.getIdTokenClaims();
+      console.log(res);
+      const jwt = res.__raw;
+      console.log(jwt)
+      localStorage.setItem("jwt", jwt);
       const config = {
         method: 'put',
         baseURL: process.env.REACT_APP_SERVER,
         url: `/pokemondb/${pokemonToUpdate._id}`,
-        // headers: {
-        //   'Authorization': `Bearer ${jwt}`
-        // },
+        headers: {
+          'Authorization': `Bearer ${jwt}`
+        },
         data: pokemonToUpdate
       }
-      // let url = `${SERVER}/book/${id}`;
+
       await axios(config);
 
-      // let url = `${SERVER}/book/${bookToUpdate._id}`;
-      // console.log(url);
       let updatedPokemonFromDb = await axios(config);
       console.log(updatedPokemonFromDb.data)
 
@@ -151,20 +148,20 @@ class App extends React.Component {
   
     deletePokemon = async (id) => {
       try {
-        // const res = await this.props.auth0.getIdTokenClaims();
-        // console.log(res);
-        // const jwt = res.__raw;
-        // console.log(jwt)
+        const res = await this.props.auth0.getIdTokenClaims();
+        console.log(res);
+        const jwt = res.__raw;
+        console.log(jwt)
         // localStorage.setItem("jwt", jwt);
         const config = {
           method: 'delete',
           baseURL: process.env.REACT_APP_SERVER,
           url: `/pokemondb/${id}`,
-          // headers: {
-          //   'Authorization': `Bearer ${jwt}`
-          // },
+          headers: {
+            'Authorization': `Bearer ${jwt}`
+          },
         }
-        // let url = `${SERVER}/pokemondb/${id}`;
+
         await axios(config);
         let updatedTeam = this.state.team.filter(pokemon => pokemon._id !== id);
         this.setState({
@@ -204,6 +201,7 @@ class App extends React.Component {
     }
 
   render(){
+    console.log(this.props.auth0.isAuthenticated)
     return (    
       <>
         <Router>
@@ -264,5 +262,5 @@ class App extends React.Component {
   }
 }
 
-// export default withAuth0(App);
-export default App;
+export default withAuth0(App);
+// export default App;
