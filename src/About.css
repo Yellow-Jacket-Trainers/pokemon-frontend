@@ -39,8 +39,8 @@ h2 {
 }
 
 .member-image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 50%;
   margin: 0 1rem;
@@ -49,10 +49,14 @@ h2 {
 
 .member-info h3 {
   color: #3d7dca;
+  margin: 0;
+  margin-bottom: 0.5rem;
 }
 
 .member-info p {
   color: #ffffff;
+  margin: 0;
+  flex: 1;
 }
 
 .member-info strong {
