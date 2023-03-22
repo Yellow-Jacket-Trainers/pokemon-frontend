@@ -67,13 +67,13 @@ class App extends React.Component {
         let results = await axios(config)
 
         // let results = await axios.get(`${SERVER}/pokemondb`);
-        console.log(results.data)
+        console.log(results)
         this.setState({
           team: results.data
         }
         )
       } catch (error) {
-        console.log('There was an error!:', error.response.data)
+        console.log('There was an error!:', error.response)
       }
     };
 
@@ -99,26 +99,50 @@ class App extends React.Component {
         // const jwt = localStorage.getItem("jwt");
         let selectedPoke = await axios(config);
         console.log(selectedPoke.data);
-        // this.setState({
-        //   favorites: [...this.state.favorites, newPokemon]
-        // },
-        console.log(selectedPoke)
-        // )
+        //  this.setState({
+        //    team: [...this.state.favorites, newPokemon]
+        //  },
+        // console.log(selectedPoke)
+        //  )
       }
       catch (error) {
-        console.log('ERR', error.response.data)
+        console.log('ERR', error.response)
       }
     };
   
-  updatePokemon = async (e) => {
+  updatePokemon = async (pokemonToUpdate) => {
     try {
-      let updatedPokemon = await axios.put(`${process.env.REACT_APP_SERVER}/pokemondb/${this.state.pokeData._id}`, this.state.pokeData);
-      console.log(updatedPokemon.data);
+
+      // const res = await this.props.auth0.getIdTokenClaims();
+      // console.log(res);
+      // const jwt = res.__raw;
+      // console.log(jwt)
+      // localStorage.setItem("jwt", jwt);
+      const config = {
+        method: 'put',
+        baseURL: process.env.REACT_APP_SERVER,
+        url: `/pokemondb/${pokemonToUpdate._id}`,
+        // headers: {
+        //   'Authorization': `Bearer ${jwt}`
+        // },
+        data: pokemonToUpdate
+      }
+      // let url = `${SERVER}/book/${id}`;
+      await axios(config);
+
+      // let url = `${SERVER}/book/${bookToUpdate._id}`;
+      // console.log(url);
+      let updatedPokemonFromDb = await axios(config);
+      console.log(updatedPokemonFromDb.data)
+
+      let updatedTeam = this.state.team.map((member) => {
+        return member._id === pokemonToUpdate._id
+          ? updatedPokemonFromDb.data
+          : member;
+      });
       this.setState({
-        pokeData: updatedPokemon.data,
-      }, 
-      () => console.log(this.state.pokeData)
-      );
+        team: updatedTeam,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -172,12 +196,10 @@ class App extends React.Component {
       }
       this.setState({
         team: [...this.state.team, newPokeMember]
-      }, 
+      },
       () => this.postPokemon(newPokeMember)
       );
     }
-
-
 
   render(){
     return (    
@@ -193,22 +215,6 @@ class App extends React.Component {
               handlePokeInput={this.handlePokeInput}
                 />}>
             </Route>
-
-            {/* <Route
-              exact path="/"
-              element={<PokemonStats
-                pokeData={this.state.pokeData}
-                handlePokeFav={this.handlePokeFav}
-                />
-                }>
-            </Route> */}
-
-             {/* <Route
-              exact path="/"
-              element={<PokeCarousel
-                pokeData={this.state.pokeData}
-                />}>
-            </Route> */}
 
             <Route
               path="/about"
