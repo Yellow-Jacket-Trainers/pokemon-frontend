@@ -1,43 +1,64 @@
 import React from 'react';
-import { ListGroup, Image, Button } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 
-function Sidebar(props) {
+class Sidebar extends React.Component {
 
-  const { favorites, handleDelete } = props;
-  const handleAddFavorite = (favorite) => {
-    if (favorites.length < 6) {
-      setFavorites([...favorites, favorite]);
-    } else {
-      alert('The max team size is 6!');
-    }
-  };
+  componentDidMount() {
+    this.props.getPokeDataFromDB()
+  }
 
-  const handleDelete = (idx) => {
-    setFavorites(favorites.filter((_, i) => i !== idx));
-  };
-  
-  return (
-    <div>
+  render() {
+    console.log(this.props.favorites)
+    console.log(this.props.team)
+    
+    let team = [];
+    if (this.props.team) {
+      team = this.props.team.map((member) => (
+      <Team 
+      key={member._id}
+      member={member}
+      deletePokemon={this.props.deletePokemon}
+      updatePokemon={this.props.updatePokemon}
+      />
+    
+
+    ))
+          }
+
+      return (
+    <>
       <h3>Favorite Mons</h3>
       <ListGroup>
-        {favorites.map((favorite, index) => (
-          <ListGroup.Item key={index}>
-            <Image 
-            src={favorite.imageUrl}
-            alt={favorite.name} 
-            thumbnail />
-            <span>{favorite.name}</span>
-            <Button 
-            onClick={() => handleDelete(index)}
-            variant="danger">
-              Delete
-              </Button>
-          </ListGroup.Item>
-        ))}
+        {team}
       </ListGroup>
-    </div>
+        
+        
+        </>
   );
+  }
+}
 
+class Team extends React.Component {
+  render() {
+    return(
+      <ListGroup.Item>
+      {this.props.member.name}
+
+    {/* <Button
+      variant='warning'
+      onClick={this.props.updatePokemon} >
+      Make MVP 
+    </Button>
+     */}
+    <Button
+      variant='danger'
+      onClick={() => this.props.deletePokemon(this.props.member._id)}>
+        Delete Pokemon
+      </Button>
+  </ListGroup.Item>
+    )
+
+  }
 
 }
 
