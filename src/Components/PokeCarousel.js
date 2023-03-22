@@ -4,6 +4,7 @@ import {Carousel} from 'react-bootstrap';
 class PokeCarousel extends React.Component{
 
   render() {
+    console.log('fetching images')
     let pokemonItems = [];
       pokemonItems = this.props.pokeData.map(pokeData => (
         <Carousel.Item key={pokeData._id}>
