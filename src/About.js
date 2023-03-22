@@ -2,10 +2,13 @@ import React from 'react';
 
 class TeamMember extends React.Component {
   render() {
-    const { name, role, bio, image } = this.props;
+    const { name, role, bio, image, index } = this.props;
+    const alignment = index % 2 === 0 ? 'left' : 'right';
     return (
-      <div>
-        <img src={image} alt={name} />
+      <div className={`team-member ${alignment}`}>
+        <img className="member-image"
+        src={image} 
+        alt={name} />
         <h3>{name}</h3>
         <p><strong>{role}</strong></p>
         <p>{bio}</p>
@@ -39,23 +42,26 @@ class About extends React.Component {
         name: 'Miranda Lu',
         role: 'Developer/Java Department',
         bio: 'I’m a software developer with experience in finance and scientific analysis. From my past experiences, I discovered how powerful computers can be, as they can automate many monotonous processes and improve workflow efficiency. As a veteran, I enjoy team work and networking; and as a prior scientist, I look forward to starting a career in finance technology, that allows me use coding to enhance my quantitative reasoning skills.',
-        image: /images/aboutUs/miranda.png,
+        image: '/images/aboutUs/miranda.png',
       },
       // Add more team members here...
     ];
 
     return (
-      <div>
+      <div className="about-container">
         <h2>About Us</h2>
-        {teamMembers.map((member) => (
+        <div className="team-members">
+        {teamMembers.map((member, index) => (
           <TeamMember
             key={member.name}
+            index={index}
             name={member.name}
             role={member.role}
             bio={member.bio}
             image={member.image}
           />
         ))}
+        </div>
       </div>
     );
   }
