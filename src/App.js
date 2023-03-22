@@ -8,10 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import { Carousel } from 'react-bootstrap';
-import { Container, Row, Col } from 'react-bootstrap';
-import Sidebar from './Components/Sidebar';
-import Pokemon from './Components/PokemonForm';
+// import Sidebar from './Components/Sidebar';
 
 import Header from './Header';
 import Footer from './Footer'
@@ -35,7 +32,7 @@ class App extends React.Component {
   //get Pokemon data from API
   getPokeDataFromAPI = async (e) => {
     e.preventDefault();
-    let url = `${process.env.REACT_APP_SERVER}/pokemon?name=${this.state.pokeName}`;
+    let url = `${process.env.REACT_APP_SERVER}/pokemondb?name=${this.state.pokeName}`;
     console.log(url);
     let pokeData = await axios.get(url);
     console.log(pokeData.data)
@@ -163,10 +160,10 @@ class App extends React.Component {
                 pokeData={this.state.pokeData}
                 />
 
-             <Sidebar
+             {/* <Sidebar
               favorites={this.state.favorites}
               handleDelete={this.handleDelete}
-              />
+              /> */}
             
             <Footer />
 

@@ -4,31 +4,36 @@ import { Link } from "react-router-dom";
 import { withAuth0 } from '@auth0/auth0-react';
 import LoginButton from './Components/LoginButton';
 import LogoutButton from './Components/LogoutButton';
+import HeaderCSS from './Header.module.css'
 
 class Header extends React.Component {
   render() {
 
-    return ( 
-    <>
-       {this.props.auth0.isAuthenticated
-          ?
-          <LogoutButton />
-          : <LoginButton />
-      } 
+    return (
+      <>
+        <div className="log-btn">
+          {this.props.auth0.isAuthenticated
+            ?
+            <LogoutButton />
+            : <LoginButton />
+          }
+        </div>
 
-      < Navbar collapseOnSelect expand = "lg" bg = "info" variant = "dark" >
-         
-          <Navbar.Brand>My Favorite Books</Navbar.Brand>
-          <NavItem>
-            <Link to="/" className="nav-link">Home</Link>
-          </NavItem>
+        <div className="nav-bar">
+          < Navbar collapseOnSelect expand="lg" bg="info" variant="light" >
 
-          <NavItem>
-            <Link to="/about" href="/About.js" className="nav-link">About</Link>
-          </NavItem>
+            <Navbar.Brand>Pokedeck</Navbar.Brand>
+            <NavItem>
+              <Link to="/" className="nav-link-Home">Home</Link>
+            </NavItem>
 
-      </Navbar >
-</>
+            <NavItem>
+              <Link to="/about" href="/About.js" className="nav-link-About">About</Link>
+            </NavItem>
+
+          </Navbar >
+        </div>
+      </>
     )
   }
 }
