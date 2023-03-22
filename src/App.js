@@ -48,7 +48,7 @@ class App extends React.Component {
   //get pokemon from database
   getPokeDataFromDB = async () => {
     // if (this.props.auth0.isAuthenticated) {
-
+    console.log('get data from db')
       try {
         //get token
         // const res = await this.props.auth0.getIdTokenClaims();
@@ -66,12 +66,11 @@ class App extends React.Component {
         }
         let results = await axios(config)
 
-        // let results = await axios.get(`${SERVER}/book`);
-        // // console.log(results)
+        // let results = await axios.get(`${SERVER}/pokemondb`);
+        console.log(results.data)
         this.setState({
           team: results.data
         }
-        ,()=> console.log(this.state.books)
         )
       } catch (error) {
         console.log('There was an error!:', error.response.data)
@@ -100,10 +99,11 @@ class App extends React.Component {
         // const jwt = localStorage.getItem("jwt");
         let selectedPoke = await axios(config);
         console.log(selectedPoke.data);
-        this.setState({
-          pokeData: [...this.state.pokeData, selectedPoke.data]
-        },
-        )
+        // this.setState({
+        //   favorites: [...this.state.favorites, newPokemon]
+        // },
+        console.log(selectedPoke)
+        // )
       }
       catch (error) {
         console.log('ERR', error.response.data)
@@ -141,7 +141,7 @@ class App extends React.Component {
         }
         // let url = `${SERVER}/pokemondb/${id}`;
         await axios(config);
-        let updatedTeam = this.state.pokeData.filter(pokemon => pokemon._id !== id);
+        let updatedTeam = this.state.team.filter(pokemon => pokemon._id !== id);
         this.setState({
           team: updatedTeam,
         });
@@ -168,16 +168,16 @@ class App extends React.Component {
       let newPokeMember = {
         name: this.state.pokeData[0].name,
         types: this.state.pokeData[0].types,
+        weaknesses: this.state.pokeData[0].weaknesses,
       }
-      // if (this.state.pokeData[0].types[1]) {
-      //   newPokeMember.type2 = this.props.pokeData[0].types[1]
-      // } 
       this.setState({
-        favorites: [...this.state.favorites, newPokeMember]
+        team: [...this.state.team, newPokeMember]
       }, 
       () => this.postPokemon(newPokeMember)
       );
     }
+
+
 
   render(){
     return (    
@@ -228,6 +228,8 @@ class App extends React.Component {
             <PokemonStats
               pokeName={this.state.pokeName}
               pokeData={this.state.pokeData} 
+              postPokemon={this.postPokemon}
+              getPokeDataFromDB={this.getPokeDataFromDB}
               handlePokeFav={this.handlePokeFav}
               />
 

@@ -10,9 +10,10 @@ class Sidebar extends React.Component {
   render() {
     console.log(this.props.favorites)
     console.log(this.props.team)
+    
     let team = [];
-    if (this.props.favorites) {
-      team = this.props.favorites.map((member) => (
+    if (this.props.team) {
+      team = this.props.team.map((member) => (
       <Team 
       key={member._id}
       member={member}

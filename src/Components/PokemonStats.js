@@ -5,8 +5,14 @@ import {  ListGroup, Image  } from 'react-bootstrap';
 
 class PokemonStats extends React.Component{
 
+  componentDidMount() {
+    this.props.getPokeDataFromDB()
+  }
+
+
   render() {
-    console.log(this.props.pokeData[0])
+    // console.log(this.props.pokeData[0])
+
 
     return(
        <>
