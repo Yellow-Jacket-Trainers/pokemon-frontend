@@ -1,7 +1,7 @@
 import React from 'react';
-import { ListGroup, Image, Button } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 
-function Sidebar(props) {
+class Sidebar extends React.Component {
 
 
 
@@ -30,23 +30,14 @@ function Sidebar(props) {
     <>
       <h3>Favorite Mons</h3>
       <ListGroup>
-        {favorites.map((favorite, index) => (
-          <ListGroup.Item key={index}>
-            <Image 
-            src={favorite.imageUrl}
-            alt={favorite.name} 
-            thumbnail />
-            <span>{favorite.name}</span>
-            <Button 
-            onClick={() => handleDelete(index)}
-            variant="danger">
-              Delete
-              </Button>
-          </ListGroup.Item>
-        ))}
+        {team}
       </ListGroup>
-    </div>
+        
+        
+        </>
   );
+  }
+}
 
 class Team extends React.Component {
 
@@ -87,4 +78,4 @@ class Team extends React.Component {
 
 }
 
-// export default Sidebar;
+export default Sidebar;

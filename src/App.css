@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Exo:wght@100&display=swap');
+
 .App {
   text-align: center;
 }
@@ -38,6 +41,58 @@
 }
 
 .Footer {
-  color: #4f7cd4;
-  border: #4f7cd4;
+  color: #495a7d;
+  border: #8490aa;
+}
+
+.navbar-brand{
+  font-family: 'Press Start 2P', cursive;
+  color: rgb(191, 255, 0);
+  font-size: 50px;
+}
+
+.list{
+  display:flex;
+  justify-content: center;
+}
+
+#root{
+  background-image: url(/public/aboutUs/battleBackground.png);
+  background-size: cover;
+  background-position: center;
+
+}
+
+img{
+  height: 300px;
+  
+}
+
+/* .carousel-inner{
+  height:1%;
+  width:fit-content;
+  width:20%
+
+} */
+
+.carousel{
+  height: 20%;
+}
+
+.carousel img{
+  margin-left: 36%;
+  margin-top: 5%;
+}
+
+.carousel h3 {
+  color: #f9fdfe;
+  font-family: 'Exo', sans-serif;  font-weight: bold;
+}
+
+/* .carousel-control-prev{
+  width: 10px
+} */
+
+.nav-item{
+  color: yellow;
 }
