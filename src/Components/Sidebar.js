@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, Button } from 'react-bootstrap';
+import { ListGroup, Button, Card, Col, Row } from 'react-bootstrap';
 
 class Sidebar extends React.Component {
 
@@ -27,8 +27,8 @@ class Sidebar extends React.Component {
 
       return (
     <>
-      <h3>Favorite Mons</h3>
-      <ListGroup>
+      {/* <h3>Favorite Mons</h3> */}
+      <ListGroup className="fav-mon">
         {team}
       </ListGroup>
         
@@ -47,6 +47,7 @@ class Team extends React.Component {
       name: this.props.member.name,
       type: this.props.member.types,
       weaknesses: this.props.member.weaknesses,
+      image: this.props.member.image,
       _id: this.props.member._id,
       // !!!version "__v" has 2 underscores!!!
       __v: this.props.member.__v
@@ -57,24 +58,53 @@ class Team extends React.Component {
 
   render() {
     return(
-      <ListGroup.Item 
-      key={this.props.member._id}
-      className = {this.props.member.MVP ? 'MVP' : ''}
-      >
-      {this.props.member.name}
+
+      <>
+
+      <Col>
+      <Card style={{ width: '22rem', height: '500px'}} 
+      className={this.props.member.MVP ? 'MVP' : ''}>
+        <Card.Img variant="bottom" src={this.props.member.image}/>
+        <Card.Body>
+          <Card.Title>{this.props.member.name}</Card.Title>
+          <Card.Text>
+            {this.props.member.types}
+          </Card.Text>
+          <Button
+            variant='info'
+            onClick={this.handleUpdateMVP}>
+            Make MVP
+          </Button>
+
+          <Button
+            variant='danger'
+            onClick={() => this.props.deletePokemon(this.props.member._id)}>
+            Delete
+          </Button>
+        </Card.Body>
+      </Card>
       
-    <Button
-      variant='info'
-      onClick={this.handleUpdateMVP} >
-      Make MVP 
-    </Button>
-     
-    <Button
-      variant='danger'
-      onClick={() => this.props.deletePokemon(this.props.member._id)}>
-        Delete Pokemon
-      </Button>
-  </ListGroup.Item>
+      {/* <ListGroup.Item
+        key={this.props.member._id}
+        className={this.props.member.MVP ? 'MVP' : ''}
+      >
+          {this.props.member.image}
+          {this.props.member.name}
+
+          <Button
+            variant='info'
+            onClick={this.handleUpdateMVP}>
+            Make MVP
+          </Button>
+
+          <Button
+            variant='danger'
+            onClick={() => this.props.deletePokemon(this.props.member._id)}>
+            Delete Pokemon
+          </Button>
+        </ListGroup.Item> */}
+        </Col>
+        </>
     )
   }
 

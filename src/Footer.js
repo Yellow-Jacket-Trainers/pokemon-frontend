@@ -5,9 +5,10 @@ import './Footer.css';
 class Footer extends React.Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand>Code Fellows</Navbar.Brand>
-      </Navbar>
+      <div className='footer'>
+        <p>Yellow Jacket Trainers</p>
+        <img id="wu-tang" src="aboutUs/wu-tang-logo-1024x1024.jpeg" alt="our logo"/>
+      </div>
     )
   }
 }

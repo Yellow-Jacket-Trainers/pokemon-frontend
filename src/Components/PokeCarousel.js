@@ -14,8 +14,8 @@ class PokeCarousel extends React.Component{
           />
     
           <Carousel.Caption>
-            <h3>{pokeData.name}</h3>
-            <p>{pokeData.type}</p>
+            {/* <h3>{pokeData.name}</h3> */}
+            {/* <p>{pokeData.type}</p> */}
           </Carousel.Caption>
         </Carousel.Item>
       ));

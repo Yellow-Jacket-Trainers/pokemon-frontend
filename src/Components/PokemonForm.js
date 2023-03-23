@@ -19,7 +19,7 @@ class PokemonForm extends React.Component{
           placeholder="e.g. Gardevoir" 
           onChange={this.props.handlePokeInput}/>
           </Form.Group>
-        <Button type="submit" variant="danger">Explore!</Button>
+        <Button type="submit" variant="danger">GO!</Button>
         </Form>
       </>
     )

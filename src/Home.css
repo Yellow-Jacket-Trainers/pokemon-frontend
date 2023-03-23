@@ -11,6 +11,15 @@
   object-fit: scale-down;
 }
 
+#poke-logo:hover{
+  width: 80%;
+  margin: 10rem 10%;
+  object-fit: scale-down;
+  /* -moz-box-shadow: inset 20px 20px 50px #3d1ad6;
+  -webkit-box-shadow: inset 10px 10px 50px #3d1ad6;
+  box-shadow: inset 10px 10px 50px #3d1ad6; */
+}
+
 /* #poke-form{
   background-image: url(/public/aboutUs/battleBackground.png);
   height: 100vh;

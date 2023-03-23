@@ -32,6 +32,7 @@ class App extends React.Component {
        isLoggedIn: false,
       //  favorites: [],
        team:[],
+       gotPoke:false,
      }
    }
 
@@ -44,6 +45,7 @@ class App extends React.Component {
     console.log(pokeData.data)
     this.setState({
       pokeData:pokeData.data,
+      gotPoke: true,
     }
     )
   }
@@ -189,18 +191,27 @@ class App extends React.Component {
 
     handlePokeFav = (e) =>{
       e.preventDefault();
-      let newPokeMember = {
+      if (this.props.auth0.isAuthenticated) {
+              let newPokeMember = {
         name: this.state.pokeData[0].name,
         types: this.state.pokeData[0].types,
         weaknesses: this.state.pokeData[0].weaknesses,
+        image: this.state.pokeData[0].image,
       }
       this.postPokemon(newPokeMember);
+      }else{
+        const { loginWithRedirect } = this.props.auth0;
+        loginWithRedirect()
+      }
+
+      }
+
       // this.setState({
       //   team: [...this.state.team, newPokeMember]
       // },
       // () => console.log(`${this.state.team}`)
       // );
-    }
+    
 
   render(){
     // console.log(this.props.auth0.isAuthenticated)
@@ -244,6 +255,7 @@ class App extends React.Component {
               handlePokeFav={this.handlePokeFav}
               pokeName={this.state.pokeName}
               pokeType={this.state.pokeType}
+              gotPoke={this.state.gotPoke}
               pokeData={this.state.pokeData}
               isLoggedIn={this.state.isLoggedIn}
               // favorite={this.state.favorites}
@@ -252,30 +264,6 @@ class App extends React.Component {
               </Route> 
 
             </Routes>
-
-          {/* {this.state.pokeData 
-          &&
-            <>
-            <PokemonStats
-              pokeName={this.state.pokeName}
-              pokeData={this.state.pokeData} 
-              postPokemon={this.postPokemon}
-              getPokeDataFromDB={this.getPokeDataFromDB}
-              handlePokeFav={this.handlePokeFav}
-              />
-
-            <PokeCarousel
-                pokeData={this.state.pokeData} />
-            
-            <Sidebar
-            favorites={this.state.favorites}
-            getPokeDataFromDB={this.getPokeDataFromDB}
-            team={this.state.team}
-            deletePokemon={this.deletePokemon} 
-            updatePokemon={this.updatePokemon}
-            />
-            </>
-          } */}
             
           <Footer />
         </Router>

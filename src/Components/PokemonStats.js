@@ -30,9 +30,9 @@ class PokemonStats extends React.Component{
         <ListGroup.Item>Pokemon Weakness: {this.props.pokeData[0].weaknesses[0].type}</ListGroup.Item>
         </ListGroup>   
 
-       <Image
+       {/* <Image
             src={`${this.props.pokeData[0].image}`}
-            alt={`this is an image of ${this.props.pokeData[0].name}`} />
+            alt={`this is an image of ${this.props.pokeData[0].name}`} /> */}
         </>
        }
        
