@@ -10,7 +10,6 @@ class Sidebar extends React.Component {
   // }
 
   render() {
-    console.log(this.props.favorites)
     console.log(this.props.team)
     
     let team = [];
@@ -58,11 +57,14 @@ class Team extends React.Component {
 
   render() {
     return(
-      <ListGroup.Item key={this.props._id}>
+      <ListGroup.Item 
+      key={this.props.member._id}
+      className = {this.props.member.MVP ? 'MVP' : ''}
+      >
       {this.props.member.name}
-
+      
     <Button
-      variant='warning'
+      variant='info'
       onClick={this.handleUpdateMVP} >
       Make MVP 
     </Button>

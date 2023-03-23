@@ -16,13 +16,17 @@ class Header extends React.Component {
           : <LoginButton />
       } 
 
-      < Navbar collapseOnSelect expand = "lg" bg = "info" variant = "dark" >
+      < Navbar expand = "xxl" bg = "info" variant = "dark" 
+       breakpoints={['xxxl']}
+       >
          
           <Navbar.Brand>My Favorite Books</Navbar.Brand>
           <NavItem>
             <Link to="/" className="nav-link">Home</Link>
           </NavItem>
-
+          <NavItem>
+            <Link to="/main" href="/Pokemon.js" className="nav-link">Collection</Link>
+          </NavItem>
           <NavItem>
             <Link to="/about" href="/About.js" className="nav-link">About</Link>
           </NavItem>

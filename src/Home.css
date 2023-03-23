@@ -1,0 +1,29 @@
+#home-bg{
+  background-image: url(/public/aboutUs/battleBackground.png);
+  height: 100vh;
+  background-size: cover;
+  padding: 5% auto;
+}
+
+#poke-logo{
+  width: 75%;
+  margin: 10rem 10%;
+  object-fit: scale-down;
+}
+
+/* #poke-form{
+  background-image: url(/public/aboutUs/battleBackground.png);
+  height: 100vh;
+  background-size: cover;
+}
+#home-input{
+  width: 75%;
+  padding: 50% auto 0 auto;
+  margin: 0 auto;
+}
+
+form button{
+  display: span;
+  width: 10%;
+  margin: 1rem 45%;
+} */

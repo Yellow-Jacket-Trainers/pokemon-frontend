@@ -1,0 +1,33 @@
+#main-form{
+  background-image: url(/public/aboutUs/battleBackground.png);
+  height: 25vh;
+}
+
+.list-group{
+  font-family: 'Exo', sans-serif;
+}
+.list-group .btn{
+  margin: 0 5rem 0 0;
+  font-size: 33px;
+}
+
+.list-group .btn-danger{
+  margin: 0 5rem 0 1rem;
+  font-size: 20px;
+}
+
+.list-group .btn-info{
+  margin: 0 0 0 3rem;
+  font-size: 20px;
+}
+
+.MVP{
+  color:brown;
+  border: 2px solid green;
+  font-weight: 800;
+  font-size: 33px;
+}
+
+.MVP:hover{
+
+}

@@ -9,31 +9,33 @@ import {
   Route,
 } from "react-router-dom";
 
-import Sidebar from './Components/Sidebar';
+// import Sidebar from './Components/Sidebar';
 
 import Header from './Header';
 import Footer from './Footer';
 import About from './About';
-import PokemonForm from './Components/PokemonForm';
-import PokemonStats from './Components/PokemonStats';
-import PokeCarousel from './Components/PokeCarousel';
+import Home from './Home';
+import Pokemon from './Pokemon';
+// import PokemonForm from './Components/PokemonForm';
+// import PokemonStats from './Components/PokemonStats';
+// import PokeCarousel from './Components/PokeCarousel';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pokeName: '',
-      pokeType:'',
-      pokeData: [],
-      error: false,
-      errorMessage: '',
-      isLoggedIn: false,
-      favorites: [],
-      team:[],
-    }
-  }
+   constructor(props) {
+     super(props);
+     this.state = {
+     pokeName: '',
+       pokeType:'',
+       pokeData: [],
+       error: false,
+       errorMessage: '',
+       isLoggedIn: false,
+      //  favorites: [],
+       team:[],
+     }
+   }
 
-  //get Pokemon data from API
+  // //get Pokemon data from API
   getPokeDataFromAPI = async (e) => {
     e.preventDefault();
     let url = `${process.env.REACT_APP_SERVER}/pokemon?name=${this.state.pokeName}`;
@@ -43,8 +45,8 @@ class App extends React.Component {
     this.setState({
       pokeData:pokeData.data,
     }
-    // , console.log(this.state.pokeData)
-    )}
+    )
+  }
 
   //get pokemon from database
   getPokeDataFromDB = async () => {
@@ -53,9 +55,9 @@ class App extends React.Component {
       try {
         //get token
         const res = await this.props.auth0.getIdTokenClaims();
-        console.log(res);
+        // console.log(res);
         const jwt = res.__raw;
-        console.log(jwt)
+        // console.log(jwt)
         localStorage.setItem("jwt", jwt);
         const config = {
           method: 'get',
@@ -67,7 +69,7 @@ class App extends React.Component {
         }
         let results = await axios(config)
         
-        console.log(results)
+        console.log(results.data)
         this.setState({
           team: results.data
         }
@@ -85,7 +87,7 @@ class App extends React.Component {
         const res = await this.props.auth0.getIdTokenClaims();
         console.log(res);
         const jwt = res.__raw;
-        console.log(jwt)
+        // console.log(jwt)
         localStorage.setItem("jwt", jwt);
         const config = {
           method: 'post',
@@ -149,9 +151,9 @@ class App extends React.Component {
     deletePokemon = async (id) => {
       try {
         const res = await this.props.auth0.getIdTokenClaims();
-        console.log(res);
+        // console.log(res);
         const jwt = res.__raw;
-        console.log(jwt)
+        // console.log(jwt)
         // localStorage.setItem("jwt", jwt);
         const config = {
           method: 'delete',
@@ -201,34 +203,57 @@ class App extends React.Component {
     }
 
   render(){
-    console.log(this.props.auth0.isAuthenticated)
+    // console.log(this.props.auth0.isAuthenticated)
     return (    
       <>
         <Router>
           <Header />
           <Routes>
-              <Route
+              {/* <Route
               exact path="/"
               element={
               <PokemonForm
               getPokeDataFromAPI={this.getPokeDataFromAPI}
               handlePokeInput={this.handlePokeInput}
                 />}>
-            </Route>
+            </Route> */}
 
             <Route
               path="/about"
               element={<About />}>
               </Route>
 
-              {/* <Route
-              path="/home"
-              element={<Home />}>
-              </Route> */}
+               <Route
+              path="/"
+              element={<Home 
+              getPokeDataFromAPI={this.getPokeDataFromAPI}
+              handlePokeInput={this.handlePokeInput}
+              />}>
+              </Route> 
+              
+              <Route
+              path="/main"
+              element={
+              <Pokemon 
+              getPokeDataFromAPI={this.getPokeDataFromAPI}
+              getPokeDataFromDB={this.getPokeDataFromDB}
+              postPokemon={this.postPokemon}
+              updatePokemon={this.updatePokemon}
+              deletePokemon={this.deletePokemon}
+              handlePokeInput={this.handlePokeInput}
+              handlePokeFav={this.handlePokeFav}
+              pokeName={this.state.pokeName}
+              pokeType={this.state.pokeType}
+              pokeData={this.state.pokeData}
+              isLoggedIn={this.state.isLoggedIn}
+              // favorite={this.state.favorites}
+              team={this.state.team}
+              />}>
+              </Route> 
 
             </Routes>
 
-          {this.state.pokeData 
+          {/* {this.state.pokeData 
           &&
             <>
             <PokemonStats
@@ -250,7 +275,7 @@ class App extends React.Component {
             updatePokemon={this.updatePokemon}
             />
             </>
-          }
+          } */}
             
           <Footer />
         </Router>
