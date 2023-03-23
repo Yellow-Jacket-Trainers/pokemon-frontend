@@ -1,4 +1,6 @@
 import React from 'react';
+import { Accordion } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import './About.css';
 
 class TeamMember extends React.Component {
@@ -6,18 +8,25 @@ class TeamMember extends React.Component {
     const { name, role, bio, image, index } = this.props;
     const alignment = index % 2 === 0 ? 'left' : 'right';
     return (
+      <Accordion defaultActiveKey="0">
       <div className={`team-member ${alignment}`}>
+        <Accordion.Toggle as={Button}
+        variant="link" eventkey="0">
         <img
           className={`member-image ${alignment === 'right' ? 'member-image-right' : ''}`}
           src={process.env.PUBLIC_URL + image}
           alt={name}
         />
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey='0'>
         <div className="member-info">
           <h3>{name}</h3>
           <p><strong>{role}</strong></p>
           <p>{bio}</p>
         </div>
+        </Accordion.Collapse>
       </div>
+      </Accordion>
     );
   }
 }
