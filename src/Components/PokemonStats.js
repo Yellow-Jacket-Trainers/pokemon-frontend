@@ -1,5 +1,6 @@
 import React from 'react';
 import {  ListGroup, Image  } from 'react-bootstrap';
+import './PokemonStats.css'
 
 // import Sidebar from './Sidebar';
 
@@ -19,8 +20,7 @@ class PokemonStats extends React.Component{
        {this.props.pokeData[0] &&
        <>
         <ListGroup>
-        <ListGroup.Item 
-        className="cursor-pointer"
+        <ListGroup.Item
         onClick={this.props.handlePokeFav} 
         >
         Favorite this Pokemon 🌟 
@@ -30,9 +30,9 @@ class PokemonStats extends React.Component{
         <ListGroup.Item>Pokemon Weakness: {this.props.pokeData[0].weaknesses[0].type}</ListGroup.Item>
         </ListGroup>   
 
-       <Image
+       {/* <Image
             src={`${this.props.pokeData[0].image}`}
-            alt={`this is an image of ${this.props.pokeData[0].name}`} />
+            alt={`this is an image of ${this.props.pokeData[0].name}`} /> */}
         </>
        }
        

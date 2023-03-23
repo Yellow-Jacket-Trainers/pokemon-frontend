@@ -5,19 +5,21 @@ import { Button } from 'react-bootstrap';
 class PokemonForm extends React.Component{
 
   render() {
-    return(
-      <>      
-        <Form className="poke-form" 
-        onSubmit={this.props.getPokeDataFromAPI}>
 
+    return(
+      <>    
+        <Form className="poke-form" id="main-form"
+        onSubmit={this.props.getPokeDataFromAPI}
+        >
+        
         <Form.Group  controlId="pokeInput">
           <Form.Label>Which Pokemon interests you?</Form.Label>
           <Form.Control 
           type="text" 
           placeholder="e.g. Gardevoir" 
           onChange={this.props.handlePokeInput}/>
-        </Form.Group>
-        <Button type="submit">Explore!</Button>
+          </Form.Group>
+        <Button type="submit" variant="danger">GO!</Button>
         </Form>
       </>
     )
