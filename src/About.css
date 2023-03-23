@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.about-container {
+  font-family: 'Press Start 2P', cursive;
+  background-image: url(/public/aboutUs/battleBackground.png);
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  color: #ffffff;
+}
+
+h2 {
+  text-align: center;
+  color: #ffcb05;
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-member {
+  display: grid;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 2px solid #ffcb05;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.team-member.left {
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: 'info image';
+  grid-column-gap: 1rem;
+}
+
+.team-member.right {
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: 'image info';
+  grid-column-gap: 1rem;
+}
+
+.team-member.left .member-image {
+  margin-left: auto;
+}
+
+
+.team-member.right .member-image {
+  margin-right: auto;
+}
+
+.member-image {
+  grid-area: image;
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ffcb05;
+  margin: 0 1rem;
+}
+
+.member-info {
+  grid-area: info;
+}
+
+.member-info h3 {
+  color: #3d7dca;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.member-info p {
+  color: #ffffff;
+  margin: 0;
+}
+
+.member-info strong {
+  color: #7cbb00;
+}
+
+@media (max-width: 768px) {
+  .team-member {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'image' 'info';
+  }
+  .member-image {
+    margin-bottom: 1rem;
+  }
+}

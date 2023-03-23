@@ -1,0 +1,12 @@
+{
+  "basic_info": {
+    "description_header": "Hi",
+    "description": "👋 Hi, im Mohammed Abubakar, a full stack developer at CodeFellows. I have experience in sound design and audio engineering. I am new to the tech world but im loving every minute of it.💜",
+    "section_name": {
+      "about": "About me",
+      "projects": "Projects",
+      "skills": "Skills",
+      "experience": "Experience"
+    }
+  }
+}

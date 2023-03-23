@@ -1,0 +1,20 @@
+#wu-tang{
+  height: 100px;
+  width: 100px;
+}
+
+.footer{
+  display: grid;
+  background-color: black;
+  color: white;
+  font-family: 'Exo', sans-serif;
+  align-items:center;
+  justify-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%; 
+}
+
+.footer p{
+  height: 10px;
+}

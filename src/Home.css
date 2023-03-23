@@ -1,0 +1,38 @@
+#home-bg{
+  background-image: url(/public/aboutUs/battleBackground.png);
+  height: 100vh;
+  background-size: cover;
+  padding: 5% auto;
+}
+
+#poke-logo{
+  width: 75%;
+  margin: 10rem 10%;
+  object-fit: scale-down;
+}
+
+#poke-logo:hover{
+  width: 80%;
+  margin: 10rem 10%;
+  object-fit: scale-down;
+  /* -moz-box-shadow: inset 20px 20px 50px #3d1ad6;
+  -webkit-box-shadow: inset 10px 10px 50px #3d1ad6;
+  box-shadow: inset 10px 10px 50px #3d1ad6; */
+}
+
+/* #poke-form{
+  background-image: url(/public/aboutUs/battleBackground.png);
+  height: 100vh;
+  background-size: cover;
+}
+#home-input{
+  width: 75%;
+  padding: 50% auto 0 auto;
+  margin: 0 auto;
+}
+
+form button{
+  display: span;
+  width: 10%;
+  margin: 1rem 45%;
+} */
