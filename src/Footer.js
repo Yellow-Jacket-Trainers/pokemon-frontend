@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
+// import Navbar from 'react-bootstrap/Navbar';
 import './Footer.css';
 
 class Footer extends React.Component {

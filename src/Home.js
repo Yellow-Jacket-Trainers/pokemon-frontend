@@ -1,8 +1,8 @@
 import React from 'react';
 // import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PokemonForm from './Components/PokemonForm';
-import {  Form, Button } from 'react-bootstrap';
+// import PokemonForm from './Components/PokemonForm';
+// import {  Form, Button } from 'react-bootstrap';
 import './Home.css';
 
 // import { joinPaths } from '@remix-run/router';
