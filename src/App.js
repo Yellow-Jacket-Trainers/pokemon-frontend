@@ -119,7 +119,7 @@ class App extends React.Component {
       const res = await this.props.auth0.getIdTokenClaims();
       console.log(res);
       const jwt = res.__raw;
-      console.log(jwt)
+      // console.log(jwt)
       localStorage.setItem("jwt", jwt);
       const config = {
         method: 'put',
